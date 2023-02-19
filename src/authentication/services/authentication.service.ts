@@ -1,18 +1,19 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { PostgresErrorCode } from 'src/database/constraints';
 import { UserEntity } from 'src/user/entities';
 import { UserService } from 'src/user/services';
-import { Connection, QueryRunner } from 'typeorm';
+import { Connection, QueryRunner, Repository } from 'typeorm';
 import { CreateAuthenticationDto } from '../dtos';
 import { RegistrationDto } from '../dtos/registration.dto';
 import { AuthenticationEntity } from '../entities';
 import { UserAlreadyExistException } from '../exceptions';
-import { AuthenticationRepository } from '../repositories';
 
 @Injectable()
 export class AuthenticationService {
   constructor(
-    private readonly _authenticationRepository: AuthenticationRepository,
+    @InjectRepository(AuthenticationEntity)
+    private readonly _authenticationRepository: Repository<AuthenticationEntity>,
     private readonly _userService: UserService,
     private readonly _connection: Connection,
   ) {}

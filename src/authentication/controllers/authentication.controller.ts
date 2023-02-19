@@ -10,7 +10,7 @@ import { UserEntity } from 'src/user/entities';
 import { RegistrationDto } from '../dtos/registration.dto';
 import { AuthenticationService } from '../services';
 
-@Controller('Authentication')
+@Controller('authentication')
 @ApiTags('Authentication')
 export class AuthenticationController {
   constructor(private readonly _authenticationService: AuthenticationService) {}

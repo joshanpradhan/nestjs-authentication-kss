@@ -11,8 +11,8 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
   const PORT = +configService.get<number>('PORT');
 
-  app.useGlobalPipes(new ValidationPipe({ transform: true }));
-  app.useGlobalInterceptors(new ClassSerializerInterceptor(reflector));
+  // app.useGlobalPipes(new ValidationPipe({ transform: true }));
+  // app.useGlobalInterceptors(new ClassSerializerInterceptor(reflector));
 
   if (configService.get<string>('NODE_ENV') === NODE_ENV.DEVELOPMENT) {
     setupSwagger(app);
